@@ -27,6 +27,7 @@ function agregarEmpleado() {
 			let unEmpleado = new Empleado (nombreEmpleado, cedula, departamento, edad);
 			Empleado.agregar(unEmpleado);
 			formulario.reset();
+            actualizar();
 		}else{
 			alert("¡Cedula repetida!");
 		}
@@ -41,6 +42,7 @@ function agregarRubro() {
         let unRubro = new Rubro (nombreRubro, descripcion);
         Rubro.agregar(unRubro);
         formulario.reset();
+        actualizar();
     }    
 }
 
@@ -51,6 +53,8 @@ function agregarOferta() {
         let elegirRubro = document.getElementById("elegirRubro").value;
         let detalle =  document.getElementById("detalle").value;
         let precio =  document.getElementById("precio");
+        let unaOferta = new Oferta(elegirEmpleado, elegirRubro, detalle, precio);
+        Oferta.agregar(unaOferta);
     }
 }
 
@@ -59,6 +63,36 @@ function borrarOferta() {
     if(formulario.reportValidity()){
         let laOferta = document.getElementById("ofertaElegida").selectedIndex;
         Oferta.borrar(laOferta);
+    }
+}
+
+function actualizar() {
+    cargarCombo();
+}
+
+function cargarComboEmpleado(){
+    let combo = document.getElementById("empleadoOferta");
+    combo.innerHTML = "";
+    let datos = Empleado.darEmpleados();
+    for (let elem of datos) {
+        let nodo = document.createElement("option");
+        let cont = elem.nombreEmpleado;
+        let nodoT = document.createTextNode(cont);
+        nodo.appendChild(nodoT);
+        combo.appendChild(nodo);
+    }
+}
+
+function cargarComboRubro() {
+    let combo = document.getElementById("rubroOferta");
+    combo.innerHTML = "";
+    let datos = Rubro.darRubro();
+    for (let elem of datos) {
+        let nodo = document.createElement("option");
+        let cont = elem.nombreRubro;
+        let nodoT = document.createTextNode(cont);
+        nodo.appendChild(nodoT);
+        combo.appendChild(nodo);
     }
 }
 

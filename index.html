@@ -7,6 +7,8 @@
     <meta charset="utf-8" />
     <title>Prog 1</title>
     <link href="estilos/estilo.css" rel="stylesheet" />
+    <script type="text/javascript" src="./js/clases.js"></script>
+	  <script type="text/javascript" src="./js/funciones.js"></script>
   </head>
   <body>
     <header>
@@ -63,7 +65,7 @@
               <label for="edad">Edad</label>
               <input type="number" class="entrada" id="edad" required />
             </div>
-            <input class="agregar" type="button" value="Agregar" /><br /><br />
+            <input class="agregar" type="button" value="Agregar" id="agregarEmpleado"/><br /><br />
           </div>
         </form>
 
@@ -88,7 +90,7 @@
                 required
               />
             </div>
-            <input class="agregar" type="button" value="Agregar" /><br /><br />
+            <input class="agregar" type="button" value="Agregar" id="agregarRubro"/><br /><br />
           </div>
         </form>
 
@@ -96,12 +98,12 @@
         <form id="formOferta">
           <div class="contenedor">
             <div class="caja">
-              <label for="empleado">Empleado</label>
-              <select id="empleado" class="entrada">
+              <label for="empleadoOferta">Empleado</label>
+              <select id="empleadoOferta" class="entrada">
                 <option value="dato">Sin datos</option>
               </select>
-              <label for="rubroAlta">Rubro</label>
-              <select id="rubroAlta" class="entrada">
+              <label for="rubroOferta">Rubro</label>
+              <select id="rubroOferta" class="entrada">
                 <option value="dato">Sin Datos</option>
               </select>
               <label for="detalle">Detalle</label>
@@ -115,7 +117,7 @@
               <label for="precio">Precio</label>
               <input type="number" class="entrada" id="precio" required />
             </div>
-            <input class="agregar" type="button" value="Agregar" /><br /><br />
+            <input class="agregar" type="button" value="Agregar" id="agregarOferta"/><br /><br />
           </div>
         </form>
 
@@ -128,7 +130,7 @@
                 <option value="dato-oferta">Sin datos</option></select
               ><br />
             </div>
-            <input class="agregar" type="button" value="Borrar" /><br /><br />
+            <input class="agregar" type="button" value="Borrar" id="borrarOferta"/><br /><br />
           </div>
         </form>
       </div>

@@ -4,17 +4,20 @@ class Empleado {
         this.cedula = laCedula;
         this.depto = elDepto;
         this.edad = laEdad;
-        this.listaEmpleados = [];
     }
 
     agregar(unEmpleado) {
-        this.listaEmpleados.push(unEmpleado);
+        Sistema.listaEmpleados.push(unEmpleado);
+    }
+
+    darEmpleados(){
+        return Sistema.listaEmpleados;
     }
 
     cedulaRepetida(cedula) {
             let existe = false;
-            for(let i = 0; i < this.listaEmpleados.length && !esta; i++){
-                if(this.listaEmpleados[i].cedula == cedula){
+            for(let i = 0; i < Sistema.listaEmpleados.length && !esta; i++){
+                if(Sistema.listaEmpleados[i].cedula == cedula){
                     existe = true;
                 }
             }
@@ -25,7 +28,6 @@ class Rubro {
     constructor(elNombreRubro, laDescripcion) {
         this.nombreRubro = elNombreRubro;
         this.descripcion = laDescripcion;
-        this.listaRubros = [];
     }
 
     agregar(unRubro) {
@@ -41,8 +43,12 @@ class Oferta {
         this.nombre = elNombreRubro;
         this.detalle = elDetalle;
         this.precio = elPrecio;
-        this.lista = [];
     }
+
+    agregar(unaOferta) {
+        Sistema.listaEOfertas.push(unaOferta);
+    }
+
     borrar(posicion) {
         if(posicion >= 0 && posicion < this.lista.length){
             this.lista.splice(posicion, 1);
@@ -52,7 +58,9 @@ class Oferta {
 
 class Sistema {
     constructor(){
-
+        this.listaEmpleados = [];
+        this.listaRubros = [];
+        this.listaOfertas = [];
     }
 }
 
