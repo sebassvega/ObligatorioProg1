@@ -1,21 +1,29 @@
 window.addEventListener("load", inicio);
-let unEmpleado = new Empleado ();
+let unEmpleado = new Empleado();
+let sistema = new Sistema ();
 
 function inicio() {
-    document.getElementById("agregarEmpleado").addEventListener("click", agregarEmpleado);
+    document.getElementById("agregarEmpleado").addEventListener("click", function(){
+        agregarEmpleado(sistema);
+    });
 
-    document.getElementById("agregarRubro").addEventListener("click", agregarRubro);
+    document.getElementById("agregarRubro").addEventListener("click", function(){
+        agregarRubro(sistema)});
 
-    document.getElementById("agregarOferta").addEventListener("click", agregarOferta);
+    document.getElementById("agregarOferta").addEventListener("click", function(){
+        agregarOferta(sistema)
+    });
 
-    document.getElementById("borrarOferta").addEventListener("click", borrarOferta);
+    document.getElementById("borrarOferta").addEventListener("click", function(){
+        borrarOferta(sistema)
+    });
 
     document.getElementById("consultar").addEventListener("click", consultar);
 }
 
 //Datos
 
-function agregarEmpleado() {
+function agregarEmpleado(sistema) {
     let formulario = document.getElementById("formAlta");
     if(formulario.reportValidity()){
         let nombreEmpleado = document.getElementById("name").value;
@@ -23,70 +31,82 @@ function agregarEmpleado() {
         let edad = document.getElementById("edad").value;
 
         let cedula = document.getElementById("cedula").value;
-        if(!Empleado.cedulaRepetida(cedula)){
+        if(!sistema.cedulaRepetida(cedula)){
 			let unEmpleado = new Empleado (nombreEmpleado, cedula, departamento, edad);
-			Empleado.agregar(unEmpleado);
+			sistema.agregarEmpleado(unEmpleado);
 			formulario.reset();
-            actualizar();
+            cargarComboEmpleado(sistema);
 		}else{
 			alert("¡Cedula repetida!");
 		}
     }
 }
 
-function agregarRubro() {
+function agregarRubro(sistema) {
     let formulario = document.getElementById("formRubro");
     if(formulario.reportValidity()){
         let nombreRubro = document.getElementById("nameRubro").value;
         let descripcion = document.getElementById("desc").value;
         let unRubro = new Rubro (nombreRubro, descripcion);
-        Rubro.agregar(unRubro);
+        sistema.agregarRubro(unRubro);
         formulario.reset();
-        actualizar();
+        cargarComboRubro(sistema);
     }    
 }
 
-function agregarOferta() {
+function agregarOferta(sistema) {
     let formulario = document.getElementById("formOferta");
     if(formulario.reportValidity()){
-        let elegirEmpleado = document.getElementById("elegirEmpleado").value;
-        let elegirRubro = document.getElementById("elegirRubro").value;
+        let elegirEmpleado = document.getElementById("empleadoOferta").value;
+        let elegirRubro = document.getElementById("rubroOferta").value;
         let detalle =  document.getElementById("detalle").value;
-        let precio =  document.getElementById("precio");
+        let precio =  document.getElementById("precio").value;
         let unaOferta = new Oferta(elegirEmpleado, elegirRubro, detalle, precio);
-        Oferta.agregar(unaOferta);
+        sistema.agregarOferta(unaOferta);
+        formulario.reset();
+        cargarComboOfertas(sistema)
     }
 }
 
-function borrarOferta() {
-    let formulario = document.getElementById("formBaja");
-    if(formulario.reportValidity()){
-        let laOferta = document.getElementById("ofertaElegida").selectedIndex;
-        Oferta.borrar(laOferta);
-    }
-}
-
-function actualizar() {
-    cargarCombo();
-}
-
-function cargarComboEmpleado(){
-    let combo = document.getElementById("empleadoOferta");
+function cargarComboOfertas(sistema){
+    let combo = document.getElementById("ofertaElegida");
     combo.innerHTML = "";
-    let datos = Empleado.darEmpleados();
-    for (let elem of datos) {
+    let datos = sistema.darOfertas();
+    for (let elem of datos){
         let nodo = document.createElement("option");
-        let cont = elem.nombreEmpleado;
+        let cont = elem.elegirRubro+" "+elem.detalle+" "+elem.precio+" "+elem.elegirEmpleado;
         let nodoT = document.createTextNode(cont);
         nodo.appendChild(nodoT);
         combo.appendChild(nodo);
     }
 }
 
-function cargarComboRubro() {
+function borrarOferta(sistema) {
+    let formulario = document.getElementById("formBaja");
+    if(formulario.reportValidity()){
+        let laOferta = document.getElementById("ofertaElegida");
+        let posicion = laOferta.selectedIndex;
+        sistema.borrar(posicion);
+    }
+}
+
+function cargarComboEmpleado(sistema){
+    let combo = document.getElementById("empleadoOferta");
+    combo.innerHTML = "";
+    let datos = sistema.darEmpleados();
+    for (let elem of datos) {
+        let nodo = document.createElement("option");
+        let cont = elem.nombreEmpleado+". CI: "+elem.cedula;
+        let nodoT = document.createTextNode(cont);
+        nodo.appendChild(nodoT);
+        combo.appendChild(nodo);
+    }
+}
+
+function cargarComboRubro(sistema) {
     let combo = document.getElementById("rubroOferta");
     combo.innerHTML = "";
-    let datos = Rubro.darRubro();
+    let datos = sistema.darRubro();
     for (let elem of datos) {
         let nodo = document.createElement("option");
         let cont = elem.nombreRubro;

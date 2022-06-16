@@ -5,54 +5,22 @@ class Empleado {
         this.depto = elDepto;
         this.edad = laEdad;
     }
-
-    agregar(unEmpleado) {
-        Sistema.listaEmpleados.push(unEmpleado);
-    }
-
-    darEmpleados(){
-        return Sistema.listaEmpleados;
-    }
-
-    cedulaRepetida(cedula) {
-            let existe = false;
-            for(let i = 0; i < Sistema.listaEmpleados.length && !esta; i++){
-                if(Sistema.listaEmpleados[i].cedula == cedula){
-                    existe = true;
-                }
-            }
-            return existe;
-        }
 }
+
 class Rubro {
     constructor(elNombreRubro, laDescripcion) {
         this.nombreRubro = elNombreRubro;
         this.descripcion = laDescripcion;
     }
-
-    agregar(unRubro) {
-        this.listaRubros.push(unRubro);
-    }
-
-    
+  
 }
 
 class Oferta {
     constructor(elNombreEmpleado, elNombreRubro, elDetalle, elPrecio) {
-        this.nombre = elNombreEmpleado;
-        this.nombre = elNombreRubro;
+        this.nombreEmpleado = elNombreEmpleado;
+        this.nombreRubro = elNombreRubro;
         this.detalle = elDetalle;
         this.precio = elPrecio;
-    }
-
-    agregar(unaOferta) {
-        Sistema.listaEOfertas.push(unaOferta);
-    }
-
-    borrar(posicion) {
-        if(posicion >= 0 && posicion < this.lista.length){
-            this.lista.splice(posicion, 1);
-        }
     }
 }
 
@@ -62,6 +30,49 @@ class Sistema {
         this.listaRubros = [];
         this.listaOfertas = [];
     }
+
+    darEmpleados(){
+        return this.listaEmpleados;
+    }
+
+    darRubro(){
+        return this.listaRubros;
+    }
+
+    darOfertas(){
+        return this.listaOfertas;
+    }
+
+    cedulaRepetida(cedula) {
+        let existe = false;
+        for(let i = 0; i < this.listaEmpleados.length && !existe; i++){
+            if(this.listaEmpleados[i].cedula == cedula){
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
+    agregarEmpleado(unEmpleado) {
+        this.listaEmpleados.push(unEmpleado);
+    }
+
+
+    agregarOferta(unaOferta) {
+        this.listaOfertas.push(unaOferta);
+    }
+
+    agregarRubro(unRubro) {
+        this.listaRubros.push(unRubro);
+    }
+
+    borrar(posicion) {
+        if(posicion >= 0 && posicion < this.listaOfertas.length){
+            this.listaOfertas.splice(posicion, 1);
+        }
+    }
 }
+
+    
 
  
