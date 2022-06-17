@@ -1,6 +1,5 @@
-window.addEventListener("load", inicio);
-let unEmpleado = new Empleado();
 let sistema = new Sistema ();
+window.addEventListener("load", inicio);
 
 function inicio() {
     document.getElementById("agregarEmpleado").addEventListener("click", function(){
@@ -74,7 +73,7 @@ function cargarComboOfertas(sistema){
     let datos = sistema.darOfertas();
     for (let elem of datos){
         let nodo = document.createElement("option");
-        let cont = elem.elegirRubro+" "+elem.detalle+" "+elem.precio+" "+elem.elegirEmpleado;
+        let cont = elem.nombreRubro+" / "+elem.detalle+" / "+elem.precio+" / "+elem.nombreEmpleado;
         let nodoT = document.createTextNode(cont);
         nodo.appendChild(nodoT);
         combo.appendChild(nodo);
@@ -82,12 +81,9 @@ function cargarComboOfertas(sistema){
 }
 
 function borrarOferta(sistema) {
-    let formulario = document.getElementById("formBaja");
-    if(formulario.reportValidity()){
-        let laOferta = document.getElementById("ofertaElegida");
-        let posicion = laOferta.selectedIndex;
-        sistema.borrar(posicion);
-    }
+    let combo = document.getElementById("ofertaElegida");
+    combo.remove(combo.selectedIndex);
+    sistema.borrar(combo.selectedIndex);
 }
 
 function cargarComboEmpleado(sistema){
