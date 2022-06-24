@@ -5,6 +5,9 @@ class Empleado {
         this.depto = elDepto;
         this.edad = laEdad;
     }
+    toString(){
+        return this.nombreEmpleado+ ". CI: "+this.cedula;
+    }
 }
 
 class Rubro {
@@ -12,13 +15,15 @@ class Rubro {
         this.nombreRubro = elNombreRubro;
         this.descripcion = laDescripcion;
     }
-  
+    toString() {
+        return this.nombreRubro;
+    }
 }
 
 class Oferta {
     constructor(elNombreEmpleado, elNombreRubro, elDetalle, elPrecio) {
-        this.nombreEmpleado = elNombreEmpleado;
-        this.nombreRubro = elNombreRubro;
+        this.empleado = elNombreEmpleado;
+        this.rubro = elNombreRubro;
         this.detalle = elDetalle;
         this.precio = elPrecio;
     }
@@ -29,6 +34,10 @@ class Sistema {
         this.listaEmpleados = [];
         this.listaRubros = [];
         this.listaOfertas = [];
+    }
+
+    ordenarPorPrecio(){
+        this.listaOfetas.sort();
     }
 
     darEmpleados(){
@@ -43,6 +52,17 @@ class Sistema {
         return this.listaOfertas;
     }
 
+    nombreRepetido(nombreRubro) {
+        let existe = false;
+        for(let i = 0; i < this.listaRubros.length && !existe; i++){
+            if(this.listaRubros[i].nombreRubro == nombreRubro){
+                existe = true;
+            }
+        }
+        return existe;
+    }
+    
+
     cedulaRepetida(cedula) {
         let existe = false;
         for(let i = 0; i < this.listaEmpleados.length && !existe; i++){
@@ -51,6 +71,30 @@ class Sistema {
             }
         }
         return existe;
+    }
+    
+    buscarCedula(cedula) {
+        let esta = false;
+        let empleado = sistema.listaEmpleados[0];
+        for (let i = 1; i < this.listaEmpleados.length && !esta; i++){
+            if(this.listaEmpleados[i].cedula == cedula){
+                esta = true;
+                empleado = this.listaEmpleados[i];
+            }
+        }
+        return empleado;
+    }
+    
+    buscarNombre(nombreRubro){
+        let esta = false;
+        let rubro = sistema.listaRubros[0];
+        for (let i = 1; i < this.listaRubros.length && !esta; i++){
+            if(this.listaRubros[i].nombreRubro == cedula) {
+                esta = true;
+                rubro = this.listaRubros[i];
+            }
+        }
+        return rubro;
     }
 
     agregarEmpleado(unEmpleado) {
@@ -72,6 +116,8 @@ class Sistema {
         }
     }
 }
+
+
 
     
 
