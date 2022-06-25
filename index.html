@@ -42,25 +42,25 @@
               <input type="number" class="entrada" id="cedula" required />
               <label for="departamento">Departamento</label>
               <select id="departamento" class="entrada">
-                <option value="artigas" selected>Artigas</option>
-                <option value="canelones">Canelones</option>
-                <option value="cerro">Cerro Largo</option>
-                <option value="colonia">Colonia</option>
-                <option value="durazno">Durazno</option>
-                <option value="flores">Flores</option>
-                <option value="florida">Florida</option>
-                <option value="lavalleja">Lavalleja</option>
-                <option value="maldonado">Maldonado</option>
-                <option value="montevideo">Montevideo</option>
-                <option value="paysandu">Paysandú</option>
-                <option value="rioNegro">Río Negro</option>
-                <option value="rivera">Rivera</option>
-                <option value="rocha">Rocha</option>
-                <option value="salto">Salto</option>
-                <option value="sanJose">San José</option>
-                <option value="soriano">Soriano</option>
-                <option value="tacuarembo">Tacuarembó</option>
-                <option value="treintaYTres">Treinta y tres</option>
+                <option value="Artigas" selected>Artigas</option>
+                <option value="Canelones">Canelones</option>
+                <option value="Cerro">Cerro Largo</option>
+                <option value="Colonia">Colonia</option>
+                <option value="Durazno">Durazno</option>
+                <option value="Flores">Flores</option>
+                <option value="Florida">Florida</option>
+                <option value="Lavalleja">Lavalleja</option>
+                <option value="Maldonado">Maldonado</option>
+                <option value="Montevideo">Montevideo</option>
+                <option value="Paysandu">Paysandú</option>
+                <option value="RrioNegro">Río Negro</option>
+                <option value="Rivera">Rivera</option>
+                <option value="Rocha">Rocha</option>
+                <option value="Salto">Salto</option>
+                <option value="SanJose">San José</option>
+                <option value="Soriano">Soriano</option>
+                <option value="Ttacuarembo">Tacuarembó</option>
+                <option value="Treinta y Tres">Treinta y tres</option>
               </select>
               <label for="edad">Edad</label>
               <input type="number" class="entrada" id="edad" required />
@@ -169,13 +169,13 @@
                   type="radio"
                   class="entrada"
                   name="orden"
-                  id="creciente"
+                  id="radioPrecioCreciente"
                   checked
                 />
                 <label for="creciente">precio creciente</label>
               </div>
               <div id="radioDepto"></div>
-              <input type="radio" class="entrada" name="orden" id="decreciente" />
+              <input type="radio" class="entrada" name="orden" id="radioDepartamento" />
               <label for="decreciente">nombre departamento creciente</label>
             </div>
           </div>
@@ -183,13 +183,13 @@
 
         <div class="info">
           <p class="parrafo"><b>Rubro:</b></p>
-          <p class="parrafo"><b>Sin datos</b></p>
+          <p class="parrafo" id="parrafoNombreRubro"><b>Sin datos</b></p>
           <p class="parrafo"><b>Promedio:</b></p>
-          <p class="parrafo"><b>Sin datos</b></p>
+          <p class="parrafo" id="parrafoPromedio"><b>Sin datos</b></p>
         </div>
         <br /><br />
 
-        <table>
+        <table id="tablaRubro">
           <tr>
             <th>Nombre Empleado</th>
             <th>Departamento</th>
@@ -209,7 +209,7 @@
         </ul>
         <h2 class="sub-titulo">Tabla de Empleados</h2>
 
-        <table>
+        <table id="tablaEmpleado">
           <tr>
             <th>Nombre Empleado</th>
             <th>Cédula</th>
