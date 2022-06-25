@@ -1,9 +1,10 @@
 class Empleado {
-    constructor(elNombreEmpleado, laCedula, elDepto, laEdad) {
+    constructor(elNombreEmpleado, laCedula, elDepto, laEdad, laOferta) {
         this.nombreEmpleado = elNombreEmpleado;
         this.cedula = laCedula;
         this.depto = elDepto;
         this.edad = laEdad;
+        this.oferta = laOferta
     }
     toString(){
         return this.nombreEmpleado+ ". CI: "+this.cedula;
@@ -11,9 +12,10 @@ class Empleado {
 }
 
 class Rubro {
-    constructor(elNombreRubro, laDescripcion) {
+    constructor(elNombreRubro, laDescripcion, elContador) {
         this.nombreRubro = elNombreRubro;
         this.descripcion = laDescripcion;
+        this.contador = elContador;
     }
     toString() {
         return this.nombreRubro;
@@ -85,11 +87,11 @@ class Sistema {
         return empleado;
     }
     
-    buscarNombre(nombreRubro){
+    buscarNombre(nombre){
         let esta = false;
         let rubro = sistema.listaRubros[0];
         for (let i = 1; i < this.listaRubros.length && !esta; i++){
-            if(this.listaRubros[i].nombreRubro == cedula) {
+            if(this.listaRubros[i].nombreRubro == nombre) {
                 esta = true;
                 rubro = this.listaRubros[i];
             }
@@ -114,6 +116,15 @@ class Sistema {
         if(posicion >= 0 && posicion < this.listaOfertas.length){
             this.listaOfertas.splice(posicion, 1);
         }
+    }
+    cantidadOfertas(empleado){
+            let cantidad = empleado.oferta;
+            for (let j = 0; j < this.listaOfertas.length; j++){
+                if (this.listaOfertas[j].empleado.nombreEmpleado == empleado.nombreEmpleado){
+                    cantidad += 1;
+                }
+            }
+        return cantidad;
     }
 }
 
