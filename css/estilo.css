@@ -164,5 +164,20 @@ table, tr, th, td{
 }
 
 @media (max-width: 500px) {
+  body{
+    background-color: blue;
+    font-size: 80%;
+  }
+}
 
+@media (max-width: 830px){
+  .contenedor .caja{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+  table{
+    margin-right: 12%;
+  }
 }

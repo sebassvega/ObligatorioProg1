@@ -23,8 +23,8 @@ class Rubro {
 }
 
 class Oferta {
-    constructor(elNombreEmpleado, elNombreRubro, elDetalle, elPrecio) {
-        this.empleado = elNombreEmpleado;
+    constructor(elEmpleado, elNombreRubro, elDetalle, elPrecio) {
+        this.empleado = elEmpleado;
         this.rubro = elNombreRubro;
         this.detalle = elDetalle;
         this.precio = elPrecio;
@@ -99,6 +99,19 @@ class Sistema {
         return rubro;
     }
 
+    existeOferta(nombre, rubro, detalle){
+        let esta = false;
+        let listaOfertas = sistema.darOfertas();
+        for (let i = 0; i < listaOfertas.length && !esta; i++){
+            if(listaOfertas[i].empleado.nombreEmpleado == nombre 
+                && listaOfertas[i].rubro.nombreRubro == rubro 
+                && listaOfertas[i].detalle == detalle) {
+                    esta = true;
+            }
+        }
+        return esta;
+    }
+
     agregarEmpleado(unEmpleado) {
         this.listaEmpleados.push(unEmpleado);
     }
@@ -106,6 +119,11 @@ class Sistema {
 
     agregarOferta(unaOferta) {
         this.listaOfertas.push(unaOferta);
+        this.listaRubros.forEach(rubro => {
+            if (rubro.nombreRubro == unaOferta.rubro.nombreRubro){
+                rubro.contador++;
+            }
+        });
     }
 
     agregarRubro(unRubro) {
@@ -117,6 +135,22 @@ class Sistema {
             this.listaOfertas.splice(posicion, 1);
         }
     }
+
+    rubrosConMaximasOfertas(){
+        let contMaxOfertas = 0;
+        let listMaxOfertas = [];
+        this.listaRubros.forEach(rubro => {
+            if (contMaxOfertas < rubro.contador){
+                contMaxOfertas = rubro.contador;
+                listMaxOfertas = [];
+                listMaxOfertas.push(rubro);
+            } else if (contMaxOfertas == rubro.contador) {
+                listMaxOfertas.push(rubro);
+            }
+        });
+        return listMaxOfertas;
+    }
+
     cantidadOfertas(empleado){
             let cantidad = empleado.oferta;
             for (let j = 0; j < this.listaOfertas.length; j++){
